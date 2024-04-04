@@ -1,0 +1,15 @@
+{"level":"info","message":"Parameters 41 and 0 received for addition","service":"calculate-service"}
+{"level":"info","message":"Parameters 41 and as received for addition","service":"calculate-service"}
+{"level":"error","message":"n2 is incorrectly defined","service":"calculate-service"}
+{"level":"info","message":"Parameters 41 and undefined received for addition","service":"calculate-service"}
+{"level":"error","message":"n2 is incorrectly defined","service":"calculate-service"}
+{"level":"info","message":"Parameters 41 and undefined received for addition","service":"calculate-service"}
+{"level":"error","message":"n2 is incorrectly defined","service":"calculate-service"}
+{"level":"info","message":"Parameters 41 and 3 received for addition","service":"calculate-service"}
+{"level":"info","message":"Parameters 41 and 3 received for subtraction","service":"calculate-service"}
+{"level":"info","message":"Parameters 41 and 3 received for multiplication","service":"calculate-service"}
+{"level":"info","message":"Parameters 41 and 3 received for division","service":"calculate-service"}
+{"level":"info","message":"Parameters 41 and 0 received for division","service":"calculate-service"}
+{"level":"error","message":"cannot divide by zero","service":"calculate-service"}
+{"level":"info","message":"Parameters undefined and 0 received for division","service":"calculate-service"}
+{"level":"error","message":"n1 is incorrectly defined","service":"calculate-service"}
