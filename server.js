@@ -49,10 +49,13 @@ function parseFloats(s1, s2)
 }
 
 //Functions to add, subtract, multiply and divide 2 numbers
-const add = (n1, n2) => { return n1 + n2; }
-const subtract = (n1, n2) => { return n1 - n2; }
-const multiply = (n1, n2) => { return n1 * n2; }
-const divide = (n1, n2) => { return n1 / n2; }
+const add = (n1, n2) => n1 + n2;
+const subtract = (n1, n2) => n1 - n2;
+const multiply = (n1, n2) => n1 * n2; 
+const divide = (n1, n2) => n1 / n2;
+const mod = (n1, n2) => n1 % n2;
+const power = (n1, n2) => Math.pow(n1, n2);
+const root = (n1, n2) => Math.pow(n1, 1 / n2)
 
 //Sending a GET endpoint to /add which will respond the the result of the addition of the two query parameters n1 and n2
 app.get("/add", (req, res) => {
@@ -120,7 +123,7 @@ app.get("/multiply", (req, res) => {
     }
 });
 
-//Sending a GET endpoint to /divide which will respond the the result of the divide of the two query parameters n1 and n2
+//Sending a GET endpoint to /divide which will respond the the result of the division of the two query parameters n1 and n2
 app.get("/divide", (req, res) => {
     try {
         //Log the parameters passed in the request
@@ -138,6 +141,104 @@ app.get("/divide", (req, res) => {
 
         //Divide the floats then respond with the result and the status 200 OK
         const result = divide(n1, n2);
+        res.status(200).json({ statuscocde: 200, data: result });
+    }
+    //If an error was thrown respond with the error message and 400 Bad Request
+    catch (error) {
+        res.status(400).json({
+            statuscocde: 400, msg: error.toString()
+        })
+    }
+});
+
+//Sending a GET endpoint to /mod which will respond the the result of the modulo of the two query parameters n1 and n2
+app.get("/mod", (req, res) => {
+    try {
+        //Log the parameters passed in the request
+        logger.info('Parameters '+req.query.n1+' and '+req.query.n2+' received for modulo');
+
+        //Convert the query paramters into floats
+        const [n1, n2] = parseFloats(req.query.n1, req.query.n2)
+
+        //Throw and log a divide error if n2 is 0
+        if (n2 == 0)
+        {
+            logger.error("cannot divide by zero");
+            throw new Error("cannot divide by zero");
+        }
+
+        //Mod the floats then respond with the result and the status 200 OK
+        const result = mod(n1, n2);
+        res.status(200).json({ statuscocde: 200, data: result });
+    }
+    //If an error was thrown respond with the error message and 400 Bad Request
+    catch (error) {
+        res.status(400).json({
+            statuscocde: 400, msg: error.toString()
+        })
+    }
+});
+
+//Sending a GET endpoint to /power which will respond the the result of n1 to the power of n2
+app.get("/power", (req, res) => {
+    try {
+        //Log the parameters passed in the request
+        logger.info('Parameters '+req.query.n1+' and '+req.query.n2+' received for powers');
+
+        //Convert the query paramters into floats
+        const [n1, n2] = parseFloats(req.query.n1, req.query.n2)
+
+        //Throw and log if power is not a positive integer
+        if (!(Number.isInteger(n2) && n2 >= 0))
+        {
+            logger.error("power must be a positive integer");
+            throw new Error("power must be a positive integer");
+        }
+
+        //Throw and log if both numbers are 0
+        if (n1 == 0 && n2 == 0)
+        {
+            logger.error("cannot calulate 0^0");
+            throw new Error("cannot calulate 0^0");
+        }
+
+        //Power the floats then respond with the result and the status 200 OK
+        const result = power(n1, n2);
+        res.status(200).json({ statuscocde: 200, data: result });
+    }
+    //If an error was thrown respond with the error message and 400 Bad Request
+    catch (error) {
+        res.status(400).json({
+            statuscocde: 400, msg: error.toString()
+        })
+    }
+});
+
+//Sending a GET endpoint to /root which will respond the the result of n1 to the n2th root
+app.get("/root", (req, res) => {
+    try {
+        //Log the parameters passed in the request
+        logger.info('Parameters '+req.query.n1+' and '+req.query.n2+' received for roots');
+
+        //Convert the query paramters into floats
+        const [n1, n2] = parseFloats(req.query.n1, req.query.n2)
+
+        //Throw and log if root is not a positive non zero integer
+        if (!(Number.isInteger(n2) && n2 > 0))
+        {
+            logger.error("root must be a positive, non zero, integer");
+            throw new Error("root must be a positive, non zero, integer");
+        }
+
+        //Throw and log cannot get even root of negative number
+        if (n1 < 0 && mod(n2, 2) == 0)
+        {
+            logger.error("cannot get even root of negative number");
+            throw new Error("cannot get even root of negative number");
+        }
+
+        //Root the floats then respond with the result and the status 200 OK
+        const result = root(n1, n2);
         res.status(200).json({ statuscocde: 200, data: result });
     }
     //If an error was thrown respond with the error message and 400 Bad Request

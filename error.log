@@ -3,3 +3,8 @@
 {"level":"error","message":"n2 is incorrectly defined","service":"calculate-service"}
 {"level":"error","message":"cannot divide by zero","service":"calculate-service"}
 {"level":"error","message":"n1 is incorrectly defined","service":"calculate-service"}
+{"level":"error","message":"root must be a positive, non zero, integer","service":"calculate-service"}
+{"level":"error","message":"cannot calulate 0^0","service":"calculate-service"}
+{"level":"error","message":"power must be a positive integer","service":"calculate-service"}
+{"level":"error","message":"power must be a positive integer","service":"calculate-service"}
+{"level":"error","message":"cannot divide by zero","service":"calculate-service"}
