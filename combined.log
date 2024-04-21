@@ -29,3 +29,6 @@
 {"level":"info","message":"Parameters 0 and -6 received for modulo","service":"calculate-service"}
 {"level":"info","message":"Parameters 0 and 0 received for modulo","service":"calculate-service"}
 {"level":"error","message":"cannot divide by zero","service":"calculate-service"}
+{"level":"info","message":"Parameters 41 and 3 received for addition","service":"calculate-service"}
+{"level":"info","message":"Parameters 41 and 3 received for addition","service":"calculate-service"}
+{"level":"info","message":"Parameters 41 and 3 received for addition","service":"calculate-service"}

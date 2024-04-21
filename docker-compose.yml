@@ -1,0 +1,18 @@
+services:
+  app:
+    #Dockerfile is in same directory as this file
+    build: .
+
+    #Files in this directory will be copied into the /usr/src/app in the container
+    volumes:
+      - .:/usr/src/app
+
+    #Container is called calculator
+    container_name: calculator
+
+    #If container stops it will be auto restarted
+    restart: always
+
+    #Container can be accessed on port 3000
+    ports:
+      - 3000:3000
